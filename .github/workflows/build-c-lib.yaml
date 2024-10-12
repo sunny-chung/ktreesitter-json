@@ -21,10 +21,10 @@ jobs:
           java-version: '17'
       - run: ./gradlew generateGrammarFilesEnhanced
       - run: |
-          pushd build/generated
+          cd build
+          cd generated
           cmake CMakeLists.txt
           make
-        shell: bash # let Windows use bash
       - uses: actions/upload-artifact@v3
         with:
           name: lib-${{ runner.os }}-${{ runner.arch }}
