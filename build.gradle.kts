@@ -77,7 +77,7 @@ val enhancedGenerateTask = task("generateGrammarFilesEnhanced") {
             }
 
         if (isWindowsOs()) {
-            val file = generatedSrc.file("CMakeLists.txt").asFile
+            val file = layout.buildDirectory.get().dir("generated").file("CMakeLists.txt").asFile
             val sourceCode = file.readText()
             if (sourceCode.contains("\\")) {
                 println("Replacing ${file.name}")
