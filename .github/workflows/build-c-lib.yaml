@@ -18,9 +18,11 @@ jobs:
           distribution: 'corretto'
           java-version: '17'
       - run: ./gradlew generateGrammarFilesEnhanced
-      - run: pushd build/generated
-      - run: cmake CMakeLists.txt
-      - run: make
+      - run: |
+          pushd build/generated
+          cmake CMakeLists.txt
+          make
+        shell: bash # let Windows use bash
       - uses: actions/upload-artifact@v3
         with:
           name: lib-${{ runner.os }}-${{ runner.arch }}
