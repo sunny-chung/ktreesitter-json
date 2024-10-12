@@ -24,9 +24,10 @@ jobs:
           cd build
           cd generated
           if [ "$RUNNER_OS" == "Windows" ]; then
-            cmake -G "NMake Makefiles" CMakeLists.txt
+            cmake --help
+            cmake CMakeLists.txt
             ls -al
-            nmake
+            cmake --build . --target INSTALL
           else
             cmake CMakeLists.txt
             make
