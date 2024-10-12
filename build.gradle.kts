@@ -53,7 +53,8 @@ kotlin {
 }
 
 /**
- * The purpose of this task is to disable default `System.loadLibrary()` calls.
+ * The purpose of this task is to disable default `System.loadLibrary()` calls,
+ * and fix the CMakeLists.txt for Windows.
  */
 val enhancedGenerateTask = task("generateGrammarFilesEnhanced") {
     dependsOn(generateTask)
@@ -74,5 +75,20 @@ val enhancedGenerateTask = task("generateGrammarFilesEnhanced") {
                     file.writeText(enhancedCode)
                 }
             }
+
+        if (isWindowsOs()) {
+            val file = generatedSrc.file("CMakeLists.txt").asFile
+            val sourceCode = file.readText()
+            if (sourceCode.contains("\\")) {
+                println("Replacing ${file.name}")
+                val enhancedCode = sourceCode.replace("\\", "/")
+                println(enhancedCode)
+                file.writeText(enhancedCode)
+            }
+        }
     }
+}
+
+fun isWindowsOs(): Boolean {
+    return System.getProperty("os.name").startsWith("Win")
 }

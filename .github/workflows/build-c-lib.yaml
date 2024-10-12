@@ -25,6 +25,7 @@ jobs:
           cd generated
           cmake CMakeLists.txt
           make
+        shell: bash # let Windows use bash
       - uses: actions/upload-artifact@v3
         with:
           name: lib-${{ runner.os }}-${{ runner.arch }}
