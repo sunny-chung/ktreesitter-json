@@ -27,7 +27,7 @@ jobs:
             cmake --help
             cmake CMakeLists.txt
             ls -al
-            cmake --build . --target INSTALL
+            cmake --build . --target INSTALL --config Release
           else
             cmake CMakeLists.txt
             make
@@ -38,4 +38,4 @@ jobs:
           name: lib-${{ runner.os }}-${{ runner.arch }}
           path: |
             build/generated/lib*
-            build/generated/*.dll
+            build/generated/Release/*.dll
