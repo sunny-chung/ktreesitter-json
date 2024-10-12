@@ -23,9 +23,14 @@ jobs:
       - run: |
           cd build
           cd generated
-          cmake CMakeLists.txt
-          ls -al
-          make
+          if [ "$RUNNER_OS" == "Windows" ]; then
+            cmake -G "NMake Makefiles" CMakeLists.txt
+            ls -al
+            nmake
+          else
+            cmake CMakeLists.txt
+            make
+          fi
         shell: bash # let Windows use bash
       - uses: actions/upload-artifact@v3
         with:
