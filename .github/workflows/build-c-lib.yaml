@@ -43,6 +43,7 @@ jobs:
             build/generated/lib*
             build/generated/Release/*.dll
   merge-lib:
+    needs: build-lib
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/download-artifact@v4
