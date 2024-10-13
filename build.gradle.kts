@@ -8,7 +8,7 @@ plugins {
 val treeSitterJsonVersion = "0.23.0"
 
 group = "io.github.sunny-chung"
-version = "$treeSitterJsonVersion.0"
+version = "$treeSitterJsonVersion.1"
 
 grammar {
     /* Default options */
