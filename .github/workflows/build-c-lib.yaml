@@ -31,11 +31,30 @@ jobs:
           else
             cmake CMakeLists.txt
             make
+            if [ "$RUNNER_OS" == "macOS" ]; then
+              mv libtree-sitter-json.dylib libtree-sitter-json-${{runner.arch}}.dylib
+            fi
           fi
         shell: bash # let Windows use bash
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: lib-${{ runner.os }}-${{ runner.arch }}
           path: |
             build/generated/lib*
             build/generated/Release/*.dll
+  merge-lib:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: .
+          merge-multiple: 'true'
+      - run: |
+          mv Release/* .
+          rm -Rf Release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: all-libs
+          path: |
+            lib*
+            *.dll
