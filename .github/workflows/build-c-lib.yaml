@@ -28,11 +28,14 @@ jobs:
             cmake CMakeLists.txt
             ls -al
             cmake --build . --target INSTALL --config Release
+            mv Release/tree-sitter-json.dll tree-sitter-json-${{runner.arch}}.dll
           else
             cmake CMakeLists.txt
             make
             if [ "$RUNNER_OS" == "macOS" ]; then
               mv libtree-sitter-json.dylib libtree-sitter-json-${{runner.arch}}.dylib
+            else
+              mv libtree-sitter-json.so libtree-sitter-${{runner.arch}}-json.so
             fi
           fi
         shell: bash # let Windows use bash
@@ -41,7 +44,7 @@ jobs:
           name: lib-${{ runner.os }}-${{ runner.arch }}
           path: |
             build/generated/lib*
-            build/generated/Release/*.dll
+            build/generated/*.dll
   merge-lib:
     needs: build-lib
     runs-on: ubuntu-20.04
@@ -53,8 +56,6 @@ jobs:
           merge-multiple: 'true'
       - run: |
           ls -alR
-          mv Release/* .
-          rm -Rf Release
       - uses: actions/upload-artifact@v4
         with:
           name: all-libs
