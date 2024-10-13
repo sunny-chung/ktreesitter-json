@@ -35,7 +35,7 @@ jobs:
             if [ "$RUNNER_OS" == "macOS" ]; then
               mv libtree-sitter-json.dylib libtree-sitter-json-${{runner.arch}}.dylib
             else
-              mv libtree-sitter-json.so libtree-sitter-${{runner.arch}}-json.so
+              mv libtree-sitter-json.so libtree-sitter-json-${{runner.arch}}.so
             fi
           fi
         shell: bash # let Windows use bash
