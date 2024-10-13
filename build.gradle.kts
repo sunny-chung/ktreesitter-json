@@ -2,7 +2,13 @@ plugins {
     id("io.github.tree-sitter.ktreesitter-plugin") version "0.23.0"
 //    kotlin("jvm")
     kotlin("multiplatform")
+    id("sunnychung.publication")
 }
+
+val treeSitterJsonVersion = "0.23.0"
+
+group = "io.github.sunny-chung"
+version = "$treeSitterJsonVersion.0"
 
 grammar {
     /* Default options */
