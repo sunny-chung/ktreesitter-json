@@ -47,6 +47,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
+          pattern: lib-*
           path: .
           merge-multiple: 'true'
       - run: |
