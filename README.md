@@ -40,6 +40,7 @@ fun loadNativeLibraries() {
     System.load(dest.absolutePath)
 }
 
+loadNativeLibraries()
 val language = Language(TreeSitterJson.language())
 val parser = Parser(language)
 
