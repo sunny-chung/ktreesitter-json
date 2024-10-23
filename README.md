@@ -19,6 +19,7 @@ implementation("io.github.sunny-chung:ktreesitter-json:0.23.0.1")
 Example use:
 ```kotlin
 fun loadNativeLibraries() {
+    val name = "tree-sitter-json"
     val systemArch = if (currentOS() == WindowsOS) {
         "x64"
     } else {
@@ -68,7 +69,7 @@ For detailed and latest usage guide & API, please refer to the official document
 ### `"${tree-sitter-json-version}.${patch}"`
 , where `patch` is a non-negative integer, starting from `0`, indicating the version of the bug fix integration release to that [tree-sitter-json](https://github.com/tree-sitter/tree-sitter-json) version.
 
-## Manual Build
+## Manual Build (not required)
 
 As you may observe, there is no custom code added here. You can build on you own.
 
